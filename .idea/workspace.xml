@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6114ce59-c5ee-4bb6-85b2-d9835683a2a3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Project1/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project1/notes/_springSecurityQuestions.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project1/src/main/java/com/example1/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project1/src/main/java/com/example1/controller/MyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project1/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project1/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project1/src/main/java/com/example/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project1/src/main/java/com/example1/MyApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project1/src/main/java/com/example/controller/MyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Project1" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
