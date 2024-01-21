@@ -1,0 +1,157 @@
+*   Explain the flow of process in Spring Security ?
+
+>>  Given below are the core components involve in Spring framework for security :
+
+    (1) Request Received by Servlet Container :
+
+        The servlet container (e.g., Tomcat, Jetty) receives an incoming HTTP request. The servlet container routes the
+        incoming request to the 'FilterChainProxy'. The 'FilterChainProxy' is typically configured to intercept requests
+        for all or specific URL patterns.
+
+
+    (2) FilterChainProxy:
+
+        The 'FilterChainProxy' is a central component responsible for handling security-related processing in a Spring
+        Security-enabled application.
+
+        It is of type 'Filter' and is the main entry point for incoming requests and delegates them to the appropriate
+        'SecurityFilterChain'.
+
+        The 'FilterChainProxy' is initialized as part of the Spring Security configuration. This usually happens during
+        the initialization of the Spring application context.
+
+        The 'doFilter()' method is being called which has 'FilterChain' passed as one of the argument.
+
+    (3) SecurityFilterChain:
+
+        The 'FilterChainProxy' in Spring Security uses a list of 'SecurityFilterChain' objects to determine the
+        appropriate security configuration for an incoming request. Each 'SecurityFilterChain' is associated with specific
+        URL patterns and security configurations.
+
+        The primary class used by 'FilterChainProxy' is 'DefaultSecurityFilterChain', which is an implementation of the
+        'SecurityFilterChain' interface. The 'DefaultSecurityFilterChain' class holds the configuration details for a
+        specific security filter chain.
+
+        'FilterChainProxy' extracts the list of 'Filter' out of the 'SecurityFilterChain' that matches the URL and
+        encapsulate it into 'FilterChain' object and calls the 'doFilter()' method of 'FilterChain'
+
+    (4) FilterChain:
+
+        When 'doFilter()' of 'FilterChainProxy' is being called, it calls 'doFilter()' of 'FilterChain' within the method.
+
+        'FilterChain' object has list of 'Filter' that is configured to be executed along with a pointer which points to
+        the next 'Filter' that needs to be applied. When 'doFilter()' of 'FilterChain' is being called, it calls 'doFilter()'
+        method of 'Filter' class to which ponter is pointing to and increments the pointer.
+
+        'doFilter()' of 'Filter' takes current 'FilterChain' object one of the argument. So that when a particular 'Filter'
+        is being applied, it will 'doFilter()' method of passed 'FilterChain' again so as to iterate over each 'Filter'
+        present in 'FilterChain' object.
+
+    (5) Filter:
+
+        Each security filter in the chain performs a specific security-related task, such as authentication, authorization,
+        and other custom actions.
+
+        Examples of security filters include UsernamePasswordAuthenticationFilter, JwtAuthenticationFilter, CsrfFilter etc
+
+        Depending on the configured security settings, certain filters handle authentication and authorization tasks. For
+        example, the UsernamePasswordAuthenticationFilter handles form-based authentication.
+
+        These 'Filter' will create a Authentication token of type 'Authentication' which will have required authentication
+        details and will call the configured 'AuthenticationManager' by invoking 'authenticate()' method.
+
+        Each 'Filter' must create an Authentication token to tell 'AuthenticationManager' what type of authentication that
+        filter whats to perform and 'AuthenticationManager' will delegate the authentication task to that
+        'AuthenticationProvider' which supports it.
+
+    (6) AuthenticationManager:
+
+        It orchestrates the authentication process by delegating the actual authentication work to a set of configured
+        'AuthenticationProvider' instances.
+
+        When an authentication request is received, the 'AuthenticationManager' iterates through the configured
+        'AuthenticationProvider' instances until it finds one that supports the provided 'AuthenticationToken' from
+        'Filter'. The order of providers matters, as the first supporting provider is used.
+
+        To check if an 'AuthenticationProvider' supports an Authentication token, it calls 'supports()' method of
+        'AuthenticationProvider'.
+
+        Once a supporting provider found out, 'AuthenticationManager' will call providers 'authenticate()' method by
+        passing token to it.
+
+        If the authentication is successful, the 'AuthenticationManager' returns a fully authenticated Authentication object.
+
+    (7) AuthenticationProvider:
+
+        The primary responsibility of an 'AuthenticationProvider' is to authenticate a user based on the credentials
+        provided in an AuthenticationToken.
+
+        Each AuthenticationProvider is associated with a specific type of AuthenticationToken that it supports. This is
+        determined by the supports method.
+
+        The authenticate method contains the logic to validate the user's credentials and return an authenticated
+        Authentication object if the authentication is successful.
+
+        If the AuthenticationProvider cannot authenticate the user (e.g., incorrect credentials), it may return null,
+        or it may throw an AuthenticationException.
+
+        When you have multiple 'AuthenticationProvider' instances that support the same type of AuthenticationToken in
+        Spring Security, the framework will iterate through these providers in the order they are configured until it
+        finds one that can successfully authenticate the token.
+
+________________________________________________________________________________________________________________________
+
+*   Explain in detail various authentication filters.
+
+>>  Here are some common Spring Security authentication filters:
+
+    (a) UsernamePasswordAuthenticationFilter:
+
+        - Role: Handles form-based login requests.
+
+        - Generates an AuthenticationToken based on the username and password provided in the login form.
+
+        - Initiates the authentication process by passing the generated AuthenticationToken to the configured
+          AuthenticationManager.
+
+    (b) BasicAuthenticationFilter:
+
+        - Role: Handles HTTP Basic Authentication.
+
+        - Generates an AuthenticationToken based on the credentials extracted from the Authorization header of the
+          HTTP request.
+
+        - Initiates the authentication process by passing the generated AuthenticationToken to the configured
+          AuthenticationManager.
+
+    (c) JwtAuthenticationTokenFilter:
+
+        - Role: Handles JWT (JSON Web Token) authentication.
+
+        - Parses the JWT from the request, validates it, and extracts the user details.
+
+        - Generates an AuthenticationToken (e.g., JwtAuthenticationToken) based on the information in the JWT.
+
+        - Initiates the authentication process by passing the generated AuthenticationToken to the configured
+          AuthenticationManager.
+
+    (d) RememberMeAuthenticationFilter:
+
+        - Role: Handles remember-me authentication.
+
+        - Generates an AuthenticationToken based on the remember-me token found in the request.
+
+        - Initiates the authentication process by passing the generated AuthenticationToken to the configured
+          AuthenticationManager.
+
+    (e) Custom Authentication Filters:
+
+        - Role: Developers can create custom authentication filters by extending AbstractAuthenticationProcessingFilter
+          or implementing the javax.servlet.Filter interface.
+
+        - Custom filters are responsible for generating an appropriate AuthenticationToken based on the specifics of
+          the authentication mechanism they support.
+
+        - Initiate the authentication process by passing the generated AuthenticationToken to the configured
+          AuthenticationManager.
+________________________________________________________________________________________________________________________
