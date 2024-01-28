@@ -6,6 +6,12 @@
       <list>
         <option value="$PROJECT_DIR$/Project1/pom.xml" />
         <option value="$PROJECT_DIR$/Project2/pom.xml" />
+        <option value="$PROJECT_DIR$/SS1_Basics/pom.xml" />
+        <option value="$PROJECT_DIR$/SS2_Basics/pom.xml" />
+        <option value="$PROJECT_DIR$/SS2_ImplementingUserDetailsService/pom.xml" />
+        <option value="$PROJECT_DIR$/SS3_ConfiguringPasswordEncoders/pom.xml" />
+        <option value="$PROJECT_DIR$/SS3_EnablingPasswordEncoder/pom.xml" />
+        <option value="$PROJECT_DIR$/SS4_ImplementingAuthenticationProvider/pom.xml" />
       </list>
     </option>
   </component>

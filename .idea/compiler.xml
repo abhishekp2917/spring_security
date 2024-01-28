@@ -6,14 +6,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Project2" />
-        <module name="Project1" />
+        <module name="SS3_EnablingPasswordEncoder" />
+        <module name="SS2_ImplementingUserDetailsService" />
+        <module name="SS4_ImplementingAuthenticationProvider" />
+        <module name="SS1_Basics" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CustomizingUserDetailsWithPasswordEncorders" target="1.8" />
       <module name="spring_security" target="1.8" />
       <module name="spring_security (1)" target="1.8" />
       <module name="spring_security (2)" target="1.8" />
+      <module name="SpringSecurityBasics" target="1.8" />
+      <module name="SS1_Basics (1)" target="1.8" />
+      <module name="SS1_Basics (2)" target="1.8" />
+      <module name="SS2_Basics" target="1.8" />
+      <module name="SS3_ConfiguringPasswordEncoders" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
